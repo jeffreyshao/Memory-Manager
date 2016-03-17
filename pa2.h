@@ -80,7 +80,7 @@ public:
       while(curr){ //so long as we're pointing at something...
         testF = 0; //with each loop, reset the test size to 0
         //while the current spot is not occupied and is not next to a NULL pointer...
-        while(!curr->ocupado && curr->next != NULL){
+        while(curr != NULL && !curr->ocupado){
           if (testF == 0){ //if testF is 0, then we're at the start of a new fragment
             testF++; //Fragment size goes up by 1
             tempL = curr->pgNum; //The starting location of the fragment is here
@@ -174,7 +174,7 @@ public:
   void printList(){
     curr = head; //set the "curr" pointer to the front of the list
     printf("%s", "\n");
-    while(curr->next != NULL){ //so long as it's pointing at something...
+    while(curr != NULL){ //so long as it's pointing at something...
       for(int i=0; i<8; i++){ //when 8 names are printed..
         printf("%s %s", curr->fileName.c_str(), ""); //print the name within
         curr = curr->next; //and advance the list
@@ -216,7 +216,7 @@ public:
       while(curr){ //so long as we're pointing at something...
         testF = 0; //with each loop, reset the test size to 0
         //while the current spot is not occupied and is not next to a NULL pointer...
-        while(!curr->ocupado && curr->next != NULL){
+        while(curr!= NULL && !curr->ocupado){
           if (testF == 0){ //if testF is 0, then we're at the start of a new fragment
             testF++; //Fragment size goes up by 1
             tempL = curr->pgNum; //The starting location of the fragment is here
@@ -240,7 +240,7 @@ public:
       } //at this point, you should have the best fragment and its location
 
       curr = head; //go back to the front of the list
-      if (fitF >= psize){ //if the largest fragment can fit the program...
+      if (fitF >= psize){ //if the fragment can fit the program...
         //cycle through the list until you find the location of the largest fragment
         while(curr->pgNum != permL){
           curr = curr->next;
@@ -253,7 +253,7 @@ public:
         }
         printf("%s %s %s %d %s", "Program", name.c_str(),"added successfully,", psize ,"page(s) used.\n");
       }
-      else{ //if the largest fragment is too big
+      else{ //if the fragment is too big
         printf("%s %s", "Error, not enough memory for Program", name.c_str());
       }
     }
