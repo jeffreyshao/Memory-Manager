@@ -28,19 +28,19 @@ int main(int argc, const char* argv[]){
     //While user choice is not 5
     while(userInput != 5){
       menu();
-      printf("%s","Choice -");
+      printf("%s","Choice - ");
       cin>>userInput;
       //switch statement to navigate menu
       switch(userInput){
         //add
-        case 1: printf("%s","Program name -");
+        case 1: printf("%s","Program name - ");
                 cin>>prgName;
-                printf("%s", "Program size (KB) -");
+                printf("%s", "Program size (KB) - ");
                 cin>>fileSize;
                 Memory->waddFile(prgName, fileSize);
                 break;
         //KILL
-        case 2: printf("%s","Program name -");
+        case 2: printf("%s","Program name - ");
                 cin>>prgName;
                 Memory->killFile(prgName);
                 break;
@@ -74,19 +74,19 @@ int main(int argc, const char* argv[]){
     //While user choice is not 5
     while(userInput != 5){
       menu();
-      printf("%s","Choice -");
+      printf("%s","Choice - ");
       cin>>userInput;
       //switch statement to navigate menu
       switch(userInput){
         //add
-        case 1: printf("%s","Program name -");
+        case 1: printf("%s","Program name - ");
                 cin>>prgName;
-                printf("%s","Program size (KB) -");
+                printf("%s","Program size (KB) - ");
                 cin>>fileSize;
                 Memory->baddFile(prgName, fileSize);
                 break;
         //KILL
-        case 2: printf("%s","Program name -");
+        case 2: printf("%s","Program name - ");
                 cin>>prgName;
                 Memory->killFile(prgName);
                 break;

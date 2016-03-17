@@ -60,14 +60,14 @@ public:
     int fitF = 0; //stores size of largest fragment. Initially 0.
 
     if(name == "Free"){
-      printf("%s","Cannot name a program /Free/");
+      printf("%s","Cannot name a program Free\n");
       return;
     }
 
     curr=head; //go to start
     while(curr){ //so long as we're pointing somewhere
       if(curr->fileName.c_str() == name){ //if the program already exists
-        printf("%s %s %s", "\nError, Program",name.c_str(),"already running.");
+        printf("%s %s %s", "Error, Program",name.c_str(),"already running.\n");
         bigfoot = true; //set boolean to true
         break; //exit loop
       }
@@ -115,10 +115,10 @@ public:
           curr->ocupado = true; //set the page as occupied
           curr = curr->next; //and then advance
         }
-        printf("%s %s %s %d %s", "\nProgram", name.c_str(),"added successfully,", psize ,"page(s) used.");
+        printf("%s %s %s %d %s", "Program", name.c_str(),"added successfully,", psize ,"page(s) used.\n");
       }
       else{ //if the largest fragment is too big
-        printf("%s %s", "\nError, not enough memory for Program", name.c_str());
+        printf("%s %s", "Error, not enough memory for Program", name.c_str());
       }
     }
   }
@@ -134,7 +134,7 @@ public:
       }
       curr = curr->next; //advance the list
     }
-    printf("%s %s %s %d %s","\nProgram",name.c_str(),"successfully killed",mine,"page(s) reclaimed.");
+    printf("%s %s %s %d %s","Program",name.c_str(),"successfully killed",mine,"page(s) reclaimed.\n");
   }
 
   void fragCount(){
@@ -144,7 +144,6 @@ public:
       if(curr->pgNum == 1){ //use this for the beginning of the list, as the temp pointer hasn't been set yet
         if(!curr->ocupado){ //if the space is not occupied
           frags++; //add to the number of fragments
-          cout<<frags<<endl;
           temp = curr; //set the temp pointer to the curr pointer's current position
           curr = curr->next; //and advance the curr pointer. Now we have the temp pointer behind the curr pointer
         }
@@ -156,7 +155,6 @@ public:
       }
       else{ //if we're not at the beginning of the list
         if(!curr->ocupado && temp->ocupado){ //if the current spot is empty and the previous isn't...
-
           frags++; //then we're at the start of a new fragment! fun stuff.
           //gotta advance that list
           temp = curr;
@@ -170,13 +168,13 @@ public:
       }
     }
     //When all's said and done, print out the appropriate statement
-    printf("%s %d %s","There are",frags,"fragment(s)");
+    printf("%s %d %s","There are",frags,"fragment(s)\n");
   }
 
   void printList(){
     curr = head; //set the "curr" pointer to the front of the list
     printf("%s", "\n");
-    while(curr != NULL){ //so long as it's pointing at something...
+    while(curr->next != NULL){ //so long as it's pointing at something...
       for(int i=0; i<8; i++){ //when 8 names are printed..
         printf("%s %s", curr->fileName.c_str(), ""); //print the name within
         curr = curr->next; //and advance the list
@@ -198,14 +196,14 @@ public:
     int fitF = 99999999; //stores size of best fragment. Initially some absurdly larger number.
 
     if(name == "Free"){
-      printf("%s","Cannot name a program /Free/");
+      printf("%s","Cannot name a program Free\n");
       return;
     }
 
     curr=head; //go to start
     while(curr){ //so long as we're pointing somewhere
       if(curr->fileName.c_str() == name){ //if the program already exists
-        printf("%s %s %s", "\nError, Program",name.c_str(),"already running.");
+        printf("%s %s %s", "Error, Program",name.c_str(),"already running.\n");
         bigfoot = true; //set boolean to true
         break; //exit loop
       }
@@ -253,10 +251,10 @@ public:
           curr->ocupado = true; //set the page as occupied
           curr = curr->next; //and then advance
         }
-        printf("%s %s %s %d %s", "\nProgram", name.c_str(),"added successfully,", psize ,"page(s) used.");
+        printf("%s %s %s %d %s", "Program", name.c_str(),"added successfully,", psize ,"page(s) used.\n");
       }
       else{ //if the largest fragment is too big
-        printf("%s %s", "\nError, not enough memory for Program", name.c_str());
+        printf("%s %s", "Error, not enough memory for Program", name.c_str());
       }
     }
   }
@@ -264,7 +262,7 @@ public:
 
 //Menu display
 void menu(){
-  printf("%s","\n1. Add program\n");
+  printf("%s","1. Add program\n");
   printf("%s","2. Kill program\n");
   printf("%s","3. Fragmentation\n");
   printf("%s","4. Print memory\n");
