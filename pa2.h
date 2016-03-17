@@ -270,3 +270,29 @@ void menu(){
   printf("%s","4. Print memory\n");
   printf("%s","5. Exit\n");
 }
+
+//Function used to ensure only numbers inputted when numbers are asked for.
+int validINTput(){
+  int x;
+  cin>>x;
+  while(cin.fail()){
+    cin.clear();
+    cin.ignore(numeric_limits<std::streamsize>::max(),'\n');
+    cout<<"A number, if you will"<<endl;
+    cin>>x;
+  }
+  return x;
+}
+
+
+float validFloatput(){
+  float x;
+  cin>>x;
+  while(cin.fail()){
+    cin.clear();
+    cin.ignore(numeric_limits<std::streamsize>::max(),'\n');
+    cout<<"A number, if you will"<<endl;
+    cin>>x;
+  }
+  return x;
+}

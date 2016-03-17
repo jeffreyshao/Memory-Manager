@@ -36,7 +36,7 @@ int main(int argc, const char* argv[]){
         case 1: printf("%s","Program name - ");
                 cin>>prgName;
                 printf("%s", "Program size (KB) - ");
-                cin>>fileSize;
+                fileSize = validFloatput();
                 Memory->waddFile(prgName, fileSize);
                 break;
         //KILL
@@ -53,7 +53,7 @@ int main(int argc, const char* argv[]){
         //quit
         case 5: break;
         //oops
-        default: printf("%s","Invalid choice\n");
+        default: printf("%s","In choice\n");
       }
     }
   }
@@ -75,14 +75,14 @@ int main(int argc, const char* argv[]){
     while(userInput != 5){
       menu();
       printf("%s","Choice - ");
-      cin>>userInput;
+      userInput = validINTput();
       //switch statement to navigate menu
       switch(userInput){
         //add
         case 1: printf("%s","Program name - ");
                 cin>>prgName;
                 printf("%s","Program size (KB) - ");
-                cin>>fileSize;
+                fileSize = validFloatput();
                 Memory->baddFile(prgName, fileSize);
                 break;
         //KILL
