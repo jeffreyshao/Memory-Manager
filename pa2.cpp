@@ -2,6 +2,7 @@
 #include "pa2.h"
 #include <string>
 #include <stdio.h>
+#include <limits>
 
 using namespace std;
 
