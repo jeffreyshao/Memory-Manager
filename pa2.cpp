@@ -6,10 +6,6 @@ using namespace std;
 
 int main(int argc, const char* argv[]){
 
-  //argc = # of params sent to the command prompt
-  // ./a.out , argc = 1, ./a.out worst , argc = 2
-  //argv[1] = worst
-
   //if they enter the wrong number of parameters
   if(argc != 2){
     printf("%s", "Wrong number of parameters!\n");
