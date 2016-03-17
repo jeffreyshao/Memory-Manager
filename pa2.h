@@ -123,6 +123,82 @@ public:
     }
   }
 
+  void baddFile(string name, float size){ //Used to add programs. Best fit
+    //pneeded is how many pages you need as a float value
+    float pneeded = (size/4); //divide the float value by 4KB
+    //psize is how many pages you need as an int value
+    int psize = (int)(ceil(pneeded)); //Round value up and convert to int
+
+    bool bigfoot=false; //true if the program exists already
+    int tempL=1; //stores fragment beginning page#
+    int permL=1; //stores program beginning page#
+    int testF; //stores size of test fragment
+    int fitF = 129; //stores size of best fragment. Initially 129, 1 above 128, the largest allowed size
+
+    if(name == "Free"){
+      printf("%s","Cannot name a program Free\n");
+      return;
+    }
+
+    curr=head; //go to start
+    while(curr){ //so long as we're pointing somewhere
+      if(curr->fileName.c_str() == name){ //if the program already exists
+        printf("%s %s %s", "Error, Program",name.c_str(),"already running.\n");
+        bigfoot = true; //set boolean to true
+        break; //exit loop
+      }
+      curr = curr->next; //move on
+    }
+
+    //For God's sake, don't use a while loop. Bad times. Scary terminal.
+    if(!bigfoot){ //if program didn't already exist.
+      curr = head; //set the "curr" pointer to the front of the list
+      while(curr){ //so long as we're pointing at something...
+        testF = 0; //with each loop, reset the test size to 0
+        //while the current spot is not occupied and is not next to a NULL pointer...
+        while(curr!= NULL && !curr->ocupado){
+          if (testF == 0){ //if testF is 0, then we're at the start of a new fragment
+            testF++; //Fragment size goes up by 1
+            tempL = curr->pgNum; //The starting location of the fragment is here
+          }
+          else if(testF != 0){ //if testF is NOT 0, then we're still in the same fragment
+            testF++; //and the fragment size goes up again
+          }
+          curr = curr->next; //advance the list. if it's a NULL, it'll break out of the list
+        }
+        /*if you've reached this point and testF is still 0, that means you're in
+          an occupied space, in which case you advance the list. Otherwise, you'll
+          be stuck in an infinite loop*/
+        if (testF==0 && curr){
+          curr=curr->next;
+        }
+        //if the test fragment size is a better fit than the previous fragment
+        if ((testF - psize) >= 0 && (testF - psize) < (fitF - psize)){
+          fitF = testF; //then update the best fragment's size
+          permL = tempL; //and record where that fragment starts
+        }
+      } //at this point, you should have the best fragment and its location
+
+      curr = head; //go back to the front of the list
+      if (fitF != 129 && fitF >= psize){ //if the fragment can fit the program, and it was updated...
+        //cycle through the list until you find the location of the largest fragment
+        while(curr->pgNum != permL){
+          curr = curr->next;
+        }
+        //once you find the location, add the program the appropriate number of times
+        for (int i=1; i<=psize; i++){
+          curr->fileName = name;
+          curr->ocupado = true; //set the page as occupied
+          curr = curr->next; //and then advance
+        }
+        printf("%s %s %s %d %s", "Program", name.c_str(),"added successfully,", psize ,"page(s) used.\n");
+      }
+      else{ //if the fragment is too big
+        printf("%s %s %s", "Error, not enough memory for Program", name.c_str(),"\n");
+      }
+    }
+  }
+
   void killFile(string name){
     int mine = 0; //number of reclaimed pages
     curr=head; //set the "curr" pointer to the beginning
@@ -183,81 +259,6 @@ public:
     }
   }
 
-  void baddFile(string name, float size){ //Used to add programs. Best fit
-    //pneeded is how many pages you need as a float value
-    float pneeded = (size/4); //divide the float value by 4KB
-    //psize is how many pages you need as an int value
-    int psize = (int)(ceil(pneeded)); //Round value up and convert to int
-
-    bool bigfoot=false; //true if the program exists already
-    int tempL=1; //stores fragment beginning page#
-    int permL=1; //stores program beginning page#
-    int testF; //stores size of test fragment
-    int fitF = 99999999; //stores size of best fragment. Initially some absurdly larger number.
-
-    if(name == "Free"){
-      printf("%s","Cannot name a program Free\n");
-      return;
-    }
-
-    curr=head; //go to start
-    while(curr){ //so long as we're pointing somewhere
-      if(curr->fileName.c_str() == name){ //if the program already exists
-        printf("%s %s %s", "Error, Program",name.c_str(),"already running.\n");
-        bigfoot = true; //set boolean to true
-        break; //exit loop
-      }
-      curr = curr->next; //move on
-    }
-
-    //For God's sake, don't use a while loop. Bad times. Scary terminal.
-    if(!bigfoot){ //if program didn't already exist.
-      curr = head; //set the "curr" pointer to the front of the list
-      while(curr){ //so long as we're pointing at something...
-        testF = 0; //with each loop, reset the test size to 0
-        //while the current spot is not occupied and is not next to a NULL pointer...
-        while(curr!= NULL && !curr->ocupado){
-          if (testF == 0){ //if testF is 0, then we're at the start of a new fragment
-            testF++; //Fragment size goes up by 1
-            tempL = curr->pgNum; //The starting location of the fragment is here
-          }
-          else if(testF != 0){ //if testF is NOT 0, then we're still in the same fragment
-            testF++; //and the fragment size goes up again
-          }
-          curr = curr->next; //advance the list. if it's a NULL, it'll break out of the list
-        }
-        /*if you've reached this point and testF is still 0, that means you're in
-          an occupied space, in which case you advance the list. Otherwise, you'll
-          be stuck in an infinite loop*/
-        if (testF==0 && curr){
-          curr=curr->next;
-        }
-        //if the test fragment size is a better fit than the previous fragment
-        if ((testF - psize) < (fitF - psize) && (testF - psize) >= 0){
-          fitF = testF; //then update the best fragment's size
-          permL = tempL; //and record where that fragment starts
-        }
-      } //at this point, you should have the best fragment and its location
-
-      curr = head; //go back to the front of the list
-      if (fitF >= psize){ //if the fragment can fit the program...
-        //cycle through the list until you find the location of the largest fragment
-        while(curr->pgNum != permL){
-          curr = curr->next;
-        }
-        //once you find the location, add the program the appropriate number of times
-        for (int i=1; i<=psize; i++){
-          curr->fileName = name;
-          curr->ocupado = true; //set the page as occupied
-          curr = curr->next; //and then advance
-        }
-        printf("%s %s %s %d %s", "Program", name.c_str(),"added successfully,", psize ,"page(s) used.\n");
-      }
-      else{ //if the fragment is too big
-        printf("%s %s", "Error, not enough memory for Program", name.c_str());
-      }
-    }
-  }
 };
 
 //Menu display
