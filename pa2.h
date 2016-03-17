@@ -195,7 +195,7 @@ public:
     int tempL=1; //stores fragment beginning page#
     int permL=1; //stores program beginning page#
     int testF; //stores size of test fragment
-    int fitF = 999999; //stores size of best fragment. Initially some absurdly larger number.
+    int fitF = 99999999; //stores size of best fragment. Initially some absurdly larger number.
 
     if(name == "Free"){
       printf("%s","Cannot name a program /Free/");
