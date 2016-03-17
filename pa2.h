@@ -257,6 +257,7 @@ public:
       }
       printf("%s", "\n"); //move to the next line
     }
+    printf("%s", "\n");
   }
 
 };
