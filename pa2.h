@@ -203,16 +203,23 @@ public:
 
   void killFile(string name){
     int mine = 0; //number of reclaimed pages
+    bool foundIt = false;
     curr=head; //set the "curr" pointer to the beginning
     while(curr){  //while "curr" is pointing something to something
       if(curr->fileName.c_str() == name){ //if the program name is found
         curr->fileName = "Free"; //rename it "Free"
         curr->ocupado = false; //reset the program to being unoccupied
         mine++; //add 1 to the number of reclaimed pages
+        foundIt = true;
       }
       curr = curr->next; //advance the list
     }
-    printf("%s %s %s %d %s","Program",name.c_str(),"successfully killed",mine,"page(s) reclaimed.\n");
+    if(foundIt){
+      printf("%s %s %s %d %s","Program",name.c_str(),"successfully killed",mine,"page(s) reclaimed.\n");
+    }
+    else{
+      printf("%s %s %s","Program",name.c_str(),"not found\n");
+    }
   }
 
   void fragCount(){
