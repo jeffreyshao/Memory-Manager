@@ -209,7 +209,7 @@ public:
 
     //If the user tries to kill "Free", they will be kicked out.
     if(name == "Free"){
-      printf("%s", "Impossible to have program Free");
+      printf("%s", "Impossible to have program Free\n");
       return;
     }
 
