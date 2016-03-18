@@ -63,7 +63,7 @@ public:
 
     //Make sure they don't name the program "Free" They can use other casing (e.g.fReE)if they really want, though
     if(name == "Free"){
-      printf("%s","Cannot name a program Free\n");
+      printf("%s","Cannot name a program 'Free'\n");
       return;
     }
 
@@ -140,7 +140,7 @@ public:
 
     //Make sure they don't name the program "Free" They can use other casing (e.g.fReE)if they really want, though
     if(name == "Free"){
-      printf("%s","Cannot name a program Free\n");
+      printf("%s","Cannot name a program 'Free'\n");
       return;
     }
 
@@ -209,7 +209,7 @@ public:
 
     //If the user tries to kill "Free", they will be kicked out.
     if(name == "Free"){
-      printf("%s", "Impossible to have program Free\n");
+      printf("%s", "Impossible to have program called 'Free'\n");
       return;
     }
 
