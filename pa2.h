@@ -61,6 +61,7 @@ public:
     int testF; //stores size of test fragment
     int fitF = 0; //stores size of largest fragment. Initially 0.
 
+    //Make sure they don't name the program "Free" They can use other casing (e.g.fReE)if they really want, though
     if(name == "Free"){
       printf("%s","Cannot name a program Free\n");
       return;
@@ -137,6 +138,7 @@ public:
     int testF; //stores size of test fragment
     int fitF = 129; //stores size of best fragment. Initially 129, 1 above 128, the largest allowed size
 
+    //Make sure they don't name the program "Free" They can use other casing (e.g.fReE)if they really want, though
     if(name == "Free"){
       printf("%s","Cannot name a program Free\n");
       return;
@@ -280,27 +282,27 @@ void menu(){
   printf("%s","5. Exit\n");
 }
 
-//Function used to ensure only numbers inputted when numbers are asked for.
+//Function used to ensure only numbers inputted when numbers are asked for (int)
 int validINTput(){
   int x;
   cin>>x;
   while(cin.fail()){
     cin.clear();
     cin.ignore(numeric_limits<std::streamsize>::max(),'\n');
-    cout<<"A number, if you will"<<endl;
+    printf("%s","Please enter a number\n");
     cin>>x;
   }
   return x;
 }
 
-
+//Function used to ensure only numbers inputted when numbers are asked for (float)
 float validFloatput(){
   float x;
   cin>>x;
   while(cin.fail()){
     cin.clear();
     cin.ignore(numeric_limits<std::streamsize>::max(),'\n');
-    cout<<"A number, if you will"<<endl;
+    printf("%s","Please enter a number\n");
     cin>>x;
   }
   return x;
