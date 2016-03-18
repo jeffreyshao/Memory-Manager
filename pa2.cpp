@@ -31,7 +31,7 @@ int main(int argc, const char* argv[]){
     while(userInput != 5){
       menu();
       printf("%s","Choice - ");
-      cin>>userInput;
+      userInput = validINTput();
       //switch statement to navigate menu
       switch(userInput){
         //add
