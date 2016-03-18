@@ -206,6 +206,13 @@ public:
   void killFile(string name){
     int mine = 0; //number of reclaimed pages
     bool foundIt = false;
+
+    //If the user tries to kill "Free", they will be kicked out.
+    if(name == "Free"){
+      printf("%s", "Impossible to have program Free");
+      return;
+    }
+
     curr=head; //set the "curr" pointer to the beginning
     while(curr){  //while "curr" is pointing something to something
       if(curr->fileName.c_str() == name){ //if the program name is found
