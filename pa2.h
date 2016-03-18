@@ -205,7 +205,7 @@ public:
 
   void killFile(string name){
     int mine = 0; //number of reclaimed pages
-    bool foundIt = false;
+    bool foundIt = false; //boolean to determine if the program was found
 
     //If the user tries to kill "Free", they will be kicked out.
     if(name == "Free"){
@@ -273,7 +273,7 @@ public:
         printf("%s %s", curr->fileName.c_str(), ""); //print the name within
         curr = curr->next; //and advance the list
       }
-      printf("%s", "\n"); //move to the next line
+      printf("%s", "\n"); //...move to the next line
     }
     printf("%s", "\n");
   }
