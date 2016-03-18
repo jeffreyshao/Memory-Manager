@@ -120,7 +120,7 @@ public:
         }
         printf("%s %s %s %d %s", "Program", name.c_str(),"added successfully,", psize ,"page(s) used.\n");
       }
-      else{ //if the largest fragment is too big
+      else{ //if the largest fragment is not big enough
         printf("%s %s", "Error, not enough memory for Program", name.c_str());
       }
     }
@@ -197,7 +197,7 @@ public:
         }
         printf("%s %s %s %d %s", "Program", name.c_str(),"added successfully,", psize ,"page(s) used.\n");
       }
-      else{ //if the fragment is too big
+      else{ //if the program is too big
         printf("%s %s %s", "Error, not enough memory for Program", name.c_str(),"\n");
       }
     }
